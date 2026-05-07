@@ -17,3 +17,27 @@ links.forEach(link => {
         }
     }
 });
+
+
+const botao = document.getElementById("submit");
+const campoUser = document.getElementById("usuario");
+const campoPass = document.getElementById("senha");
+
+const LOGIN_VALIDO = "igreja_adm";
+const SENHA_VALIDA = "301621"
+
+botao.addEventListener("click", () => {
+
+    const userDigitado = campoUser;
+    const passDigitado = campoPass;
+
+    if (userDigitado === LOGIN_VALIDO && passDigitado === SENHA_VALIDA){
+        alert("Login realizado");
+        window.location.href = "../html/land_page.html";
+    }
+    else{
+        alert("Usuário ou senha inválidos!");
+        campoPass.value = "";
+        campoPass.value = "";
+    }
+});
