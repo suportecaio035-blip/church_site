@@ -24,15 +24,14 @@ const campoUser = document.getElementById("usuario");
 const campoPass = document.getElementById("senha");
 
 const LOGIN_VALIDO = "igreja_adm";
-const SENHA_VALIDA = "301621"
+const SENHA_VALIDA = "301621";
 
 botao.addEventListener("click", () => {
 
-    const userDigitado = campoUser;
-    const passDigitado = campoPass;
+    const userDigitado = campoUser.value;
+    const passDigitado = campoPass.value;
 
     if (userDigitado === LOGIN_VALIDO && passDigitado === SENHA_VALIDA){
-        alert("Login realizado");
         window.location.href = "../html/land_page.html";
     }
     else{
