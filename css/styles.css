@@ -1,0 +1,89 @@
+* {
+    margin: 5px;
+    padding: 5px 5px;
+}
+
+body {
+    box-sizing: border-box;
+    padding: 1px 1px;
+    background-image: url(../img/login.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+h1 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.cx_login{
+    /*visual*/
+    border: 1px solid white 0.2;
+    border-radius: 15px;
+    box-shadow: 0px 0px 30px rgb(0, 0, 0);
+
+
+    height: 350px;
+    width: 300px;
+    align-self: center;
+    justify-self: center;
+    position: fixed;
+    top: 200px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    /*blur*/
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(10px); /* Suporte para Safari/iOS */
+    
+}
+
+.entradas{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 100px;
+}
+
+input{
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: transparent;
+   
+}
+
+button{
+    border-radius: 20px;
+    width: 100px;
+    height: 25px;
+    background-color: rgb(246, 246, 246);
+    color: rgb(0, 0, 0);
+    border: none;
+    box-shadow: 0px 0px 15px rgb(0, 0, 0);
+    cursor: pointer;
+    margin: 10px;
+
+    transition: transform 0.5s ease;
+}
+
+button:hover{
+    transform: scale(0.9);
+}
+button:active{
+    transform: scale(0.9) translateY(5px);
+}
+
+
+.start{
+    align-self: baseline;
+    margin: 10px;
+}

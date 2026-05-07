@@ -1,0 +1,101 @@
+* {
+    margin: 5px;
+    padding: 5px 5px;
+}
+
+body {
+    box-sizing: border-box;
+    padding: 1px 1px;
+    background-image: url(../img/login.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-top: 90px;
+
+}
+
+h1 {
+    font-size: 25px;
+    text-align: center;
+}
+
+
+.nav_bar{
+    position: absolute;
+    width: 100%;
+    top: -5px;
+    left: -5px;
+    height: 70px;
+
+    backdrop-filter: blur(3px);
+    background-color: rgb(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px); /* Suporte para Safari/iOS */
+    box-shadow: 0px 0px 15px black;
+    border: 1px solid rgba( 255, 255, 255, 0.2);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_bar{
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    margin: 10px 17px;
+    cursor: pointer;
+
+    transition: transform 0.5s ease;
+}
+
+.btn_bar:hover{
+    transform: scale(1.3);
+    color: white;
+}
+.btn_bar:active{
+    transform: scale(0.9) translateY(10px);
+}
+
+.btn_out{
+
+    height: 50px;
+    width: 70px;
+
+
+    backdrop-filter: blur(3px);
+    background-color: rgba( 255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba( 255, 255, 255, 0.2);
+    border-radius: 20px;    
+    font-size: 15px;
+    margin: 10px 50px;
+    cursor: pointer;
+
+    transition: transform 0.5s ease-in-out;
+}
+
+.btn_out:hover{
+    transform: scale(1.1);
+    background-color: rgb(255, 0, 0);
+    color: white;
+}
+
+.end{
+    position: absolute;
+    right: 10px;
+}
+
+.active{
+
+    backdrop-filter: blur(3px);
+    background-color: rgba( 255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba( 255, 255, 255, 0.2);
+    border-radius: 20px;    
+    font-size: 15px;
+    margin: 10px 50px;
+    cursor: pointer;
+    color: white;
+
+}

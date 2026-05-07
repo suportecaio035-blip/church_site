@@ -1,0 +1,21 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box_land{
+    width: 700px;
+    height: 500px;
+    position: fixed;
+    top: 170px;
+
+    backdrop-filter: blur(3px);
+    background-color: rgba( 255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba( 255, 255, 255, 0.2);
+    border-radius: 20px;
+    
+}
+
+
