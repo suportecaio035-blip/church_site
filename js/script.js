@@ -32,7 +32,7 @@ botao.addEventListener("click", () => {
     const passDigitado = campoPass.value;
 
     if (userDigitado === LOGIN_VALIDO && passDigitado === SENHA_VALIDA){
-        window.location.href = "../html/land_page.html";
+        window.location.href = "./html/land_page.html";
     }
     else{
         alert("Usuário ou senha inválidos!");
