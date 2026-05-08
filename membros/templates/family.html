@@ -1,37 +1,38 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles_default.css">
-    <link rel="stylesheet" href="../css/birthday.css">
+    <link rel="stylesheet" href="{% static 'css/styles_default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/family.css' %}">
 </head>
 <body>
     <div class="nav_bar">
-        <a id="land" href="land_page.html">
+        <a id="land" href="{% url 'land_page' %}">
         <button id="land" class="btn_bar">Página Inicial</button>
         </a>
-        <a id="member" href="member.html">
+        <a id="member" href="{% url 'lista_membros' %}">
         <button id="member" class="btn_bar">Lista Membros</button>
         </a>
-         <a id="family" href="family.html">
+         <a id="family" href="{% url 'family_page' %}">
         <button id="family" class="btn_bar">Familías</button>
         </a>
-        <a id="rafflew" href="rafflew.html">
+        <a id="rafflew" href="{% url 'rafflew_page' %}">
         <button id="rafflew" class="btn_bar">Sorteio</button>
         </a>
-        <a id="birthday" href="birthday.html">
+        <a id="birthday" href="{% url 'birthday_page' %}">
         <button id="birthday" class="btn_bar">Aniversários</button>
         </a>
 
 
         <div class="end">
-        <a id="out" href="../index.html">
+        <a id="out" href="{% url 'login' %}">
         <button id="out" class="btn_out">Sair</button>
         </a>
         </div>
     </div>
 
-    <script src="../js/script.js"></script>
+    <script src="{% static 'js/script.js' %}?v=2"></script>
     </body>
 </html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles_default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/member.css' %}">
+</head>
+<body>
+    
+    <div class="nav_bar">
+        <a id="land" href="{% url 'land_page' %}">
+        <button id="land" class="btn_bar">Página Inicial</button>
+        </a>
+        <a id="member" href="{% url 'lista_membros' %}">
+        <button id="member" class="btn_bar">Lista Membros</button>
+        </a>
+         <a id="family" href="{% url 'family_page' %}">
+        <button id="family" class="btn_bar">Familías</button>
+        </a>
+        <a id="rafflew" href="{% url 'rafflew_page' %}">
+        <button id="rafflew" class="btn_bar">Sorteio</button>
+        </a>
+        <a id="birthday" href="{% url 'birthday_page' %}">
+        <button id="birthday" class="btn_bar">Aniversários</button>
+        </a>
+
+
+        <div class="end">
+        <a id="out" href="{% url 'login' %}">
+        <button id="out" class="btn_out">Sair</button>
+        </a>
+        </div>
+    </div>
+
+
+    <div class="xsl">
+        <a href="{% url 'exportar_membros' %}">
+        <button type="button" class="btn_xsl">Exportar XSL</button>
+        </a>
+        <input type="text" placeholder="Busque por Familía:" class="input">
+    </div>
+
+    <div class="box_land">
+
+        <button type="button" id="abrirCadastroMembro">Cadastrar membro</button>
+
+        <dialog id="cadastroMembro">
+            <form method="POST" action="{% url 'lista_membros' %}">
+                {% csrf_token %}
+
+                <label for="nome">Nome do membro</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="familia">Família</label>
+                <select id="familia" name="familia" required>
+                    <option value="">Selecione uma família</option>
+                    {% for familia in familias %}
+                    <option value="{{ familia.id }}">{{ familia.sobrenome }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="telefone">Número de telefone</label>
+                <input type="tel" id="telefone" name="telefone" required>
+
+                <label for="nascimento">Data de nascimento</label>
+                <input type="date" id="nascimento" name="nascimento" required>
+
+                <button type="submit">Cadastrar</button>
+                <button type="button" id="fecharCadastroMembro">Cancelar</button>
+            </form>
+        </dialog>
+
+        <div class="depart">
+        <ul>
+        {% for membro in membros %}
+        <li>{{ membro.nome }} - {{ membro.telefone }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+
+    <script src="{% static 'js/script.js' %}?v=2"></script>
+    </body>
+</html>
