@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/styles_default.css">
+    <link rel="stylesheet" href="static/css/member.css">
+</head>
+<body>
+    <div class="nav_bar">
+        <a id="land" href="land_page.html"><button id="land" class="btn_bar">Página Inicial</button></a>
+        <a id="member" href="member.html"><button id="member" class="btn_bar">Lista Membros</button></a>
+        <a id="family" href="family.html"><button id="family" class="btn_bar">Familías</button></a>
+        <a id="rafflew" href="rafflew.html"><button id="rafflew" class="btn_bar">Sorteio</button></a>
+        <a id="birthday" href="birthday.html"><button id="birthday" class="btn_bar">Aniversários</button></a>
+
+        <div class="end">
+        <a id="out" href="index.html"><button id="out" class="btn_out">Sair</button></a>
+        </div>
+    </div>
+
+    <div class="xsl">
+        <button type="button" id="exportarMembros" class="btn_xsl">Exportar XSL</button>
+        <input type="text" id="buscaFamilia" placeholder="Busque por Familía:" class="input">
+    </div>
+
+    <div class="box_land">
+        <button type="button" id="abrirCadastroMembro" class="cad">Cadastrar membro</button>
+
+        <dialog id="cadastroMembro">
+            <form id="formMembro">
+                <label for="nome">Nome do membro</label>
+                <input type="text" id="nome" name="nome" required>
+
+                <label for="familia">Família</label>
+                <select id="familia" name="familia" required>
+                    <option value="">Selecione uma família</option>
+                </select>
+
+                <label for="telefone">Número de telefone</label>
+                <input type="tel" id="telefone" name="telefone" required>
+
+                <label for="nascimento">Data de nascimento</label>
+                <input type="date" id="nascimento" name="nascimento" required>
+
+                <button type="submit">Cadastrar</button>
+                <button type="button" id="fecharCadastroMembro">Cancelar</button>
+            </form>
+        </dialog>
+
+        <div class="depart">
+            <ul id="listaMembros"></ul>
+        </div>
+    </div>
+
+    <script type="module" src="static/js/app.js?v=1"></script>
+</body>
+</html>

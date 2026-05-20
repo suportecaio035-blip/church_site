@@ -99,3 +99,8 @@ h1 {
     color: white;
 
 }
+
+.cad{
+    border-radius: 20px;
+    justify-content: center;
+}

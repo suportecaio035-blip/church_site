@@ -1,17 +1,15 @@
 <!DOCTYPE html>
-{% load static %}
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="static/css/styles.css">
 </head>
 <body>
     <div class="cx_login">
         <div class="start">
         <h1>Login</h1>
         </div>
-
 
         <div class="entradas">
          <label for="usuario">Usuário:</label>
@@ -22,8 +20,7 @@
 
         <button id="submit">Entrar</button>
     </div>
-    
 
-    <script src="{% static 'js/script.js' %}?v=2"></script>
+    <script type="module" src="static/js/app.js?v=1"></script>
 </body>
 </html>
