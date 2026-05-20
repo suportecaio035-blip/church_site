@@ -1,2 +1,2 @@
-export const SUPABASE_URL = "COLE_AQUI_A_URL_DO_SUPABASE";
-export const SUPABASE_ANON_KEY = "COLE_AQUI_A_CHAVE_ANON_PUBLIC_DO_SUPABASE";
+export const SUPABASE_URL = "https://bafxnelsjmomjzrdxyyq.supabase.co";
+export const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJhZnhuZWxzam1vbWp6cmR4eXlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyOTMxNTAsImV4cCI6MjA5NDg2OTE1MH0.EwfdIbdeokozRP9hKne494pgmGC4Yv8FmJFR15PyuBc";
