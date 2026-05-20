@@ -21,6 +21,7 @@
 
     <div class="box_land">
         <button type="button" id="abrirCadastroFamilia">Cadastrar família</button>
+        <button type="button" id="abrirEdicaoFamilia">Editar família</button>
 
         <dialog id="cadastroFamilia">
             <form id="formFamilia">
@@ -35,11 +36,30 @@
             </form>
         </dialog>
 
+        <dialog id="edicaoFamilia">
+            <form id="formEditarFamilia">
+                <label for="familiaEditar">Família</label>
+                <select id="familiaEditar" name="familiaEditar" required>
+                    <option value="">Selecione uma família</option>
+                </select>
+
+                <label for="sobrenomeEditar">Nome da família</label>
+                <input type="text" id="sobrenomeEditar" name="sobrenomeEditar" required>
+
+                <label for="enderecoEditar">Endereço</label>
+                <input type="text" id="enderecoEditar" name="enderecoEditar" required>
+
+                <button type="submit">Salvar alterações</button>
+                <button type="button" id="excluirFamilia">Excluir família</button>
+                <button type="button" id="fecharEdicaoFamilia">Cancelar</button>
+            </form>
+        </dialog>
+
         <div class="depart">
             <ul id="listaFamilias"></ul>
         </div>
     </div>
 
-    <script type="module" src="static/js/app.js?v=1"></script>
+    <script type="module" src="static/js/app.js?v=2"></script>
 </body>
 </html>

@@ -36,3 +36,27 @@ create policy "Permitir cadastro publico de membros"
 on membros for insert
 to anon
 with check (true);
+
+
+create policy "Permitir edicao publica de familias"
+on familias for update
+to anon
+using (true)
+with check (true);
+
+create policy "Permitir exclusao publica de familias"
+on familias for delete
+to anon
+using (true);
+
+
+create policy "Permitir edicao publica de membros"
+on membros for update
+to anon
+using (true)
+with check (true);
+
+create policy "Permitir exclusao publica de membros"
+on membros for delete
+to anon
+using (true);

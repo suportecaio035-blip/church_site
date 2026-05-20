@@ -26,6 +26,7 @@
 
     <div class="box_land">
         <button type="button" id="abrirCadastroMembro" class="cad">Cadastrar membro</button>
+        <button type="button" id="abrirEdicaoMembro" class="cad">Editar membro</button>
 
         <dialog id="cadastroMembro">
             <form id="formMembro">
@@ -48,11 +49,38 @@
             </form>
         </dialog>
 
+        <dialog id="edicaoMembro">
+            <form id="formEditarMembro">
+                <label for="membroEditar">Membro</label>
+                <select id="membroEditar" name="membroEditar" required>
+                    <option value="">Selecione um membro</option>
+                </select>
+
+                <label for="nomeEditar">Nome do membro</label>
+                <input type="text" id="nomeEditar" name="nomeEditar" required>
+
+                <label for="familiaEditarMembro">Família</label>
+                <select id="familiaEditarMembro" name="familiaEditarMembro" required>
+                    <option value="">Selecione uma família</option>
+                </select>
+
+                <label for="telefoneEditar">Número de telefone</label>
+                <input type="tel" id="telefoneEditar" name="telefoneEditar" required>
+
+                <label for="nascimentoEditar">Data de nascimento</label>
+                <input type="date" id="nascimentoEditar" name="nascimentoEditar" required>
+
+                <button type="submit">Salvar alterações</button>
+                <button type="button" id="excluirMembro">Excluir membro</button>
+                <button type="button" id="fecharEdicaoMembro">Cancelar</button>
+            </form>
+        </dialog>
+
         <div class="depart">
             <ul id="listaMembros"></ul>
         </div>
     </div>
 
-    <script type="module" src="static/js/app.js?v=1"></script>
+    <script type="module" src="static/js/app.js?v=3"></script>
 </body>
 </html>

@@ -140,6 +140,12 @@ async function iniciarFamilias() {
     const listaFamilias = $("#listaFamilias");
     const formFamilia = $("#formFamilia");
     const cadastroFamilia = $("#cadastroFamilia");
+    const edicaoFamilia = $("#edicaoFamilia");
+    const formEditarFamilia = $("#formEditarFamilia");
+    const selectFamiliaEditar = $("#familiaEditar");
+    const sobrenomeEditar = $("#sobrenomeEditar");
+    const enderecoEditar = $("#enderecoEditar");
+    const excluirFamilia = $("#excluirFamilia");
 
     if (!listaFamilias && !formFamilia) {
         return;
@@ -150,11 +156,98 @@ async function iniciarFamilias() {
         return;
     }
 
+    let familias = [];
+
     abrirEFecharDialog("abrirCadastroFamilia", "cadastroFamilia", "fecharCadastroFamilia");
+    abrirEFecharDialog("abrirEdicaoFamilia", "edicaoFamilia", "fecharEdicaoFamilia");
+
+    function preencherSelectEdicao() {
+        if (!selectFamiliaEditar) {
+            return;
+        }
+
+        selectFamiliaEditar.innerHTML = '<option value="">Selecione uma família</option>';
+        familias.forEach((familia) => {
+            const option = document.createElement("option");
+            option.value = familia.id;
+            option.textContent = familia.sobrenome;
+            selectFamiliaEditar.appendChild(option);
+        });
+    }
 
     async function renderizar() {
-        const familias = await buscarFamilias();
+        familias = await buscarFamilias();
         preencherLista(listaFamilias, familias, (familia) => `${familia.sobrenome} - ${familia.endereco}`);
+        preencherSelectEdicao();
+    }
+
+    if (selectFamiliaEditar) {
+        selectFamiliaEditar.addEventListener("change", () => {
+            const familia = familias.find((item) => item.id === Number(selectFamiliaEditar.value));
+
+            sobrenomeEditar.value = familia?.sobrenome || "";
+            enderecoEditar.value = familia?.endereco || "";
+        });
+    }
+
+    if (formEditarFamilia) {
+        formEditarFamilia.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const id = Number(selectFamiliaEditar.value);
+            if (!id) {
+                alert("Selecione uma família para editar.");
+                return;
+            }
+
+            const { error } = await supabase
+                .from("familias")
+                .update({
+                    sobrenome: sobrenomeEditar.value.trim(),
+                    endereco: enderecoEditar.value.trim(),
+                })
+                .eq("id", id);
+
+            if (error) {
+                alert(`Erro ao editar família: ${error.message}`);
+                return;
+            }
+
+            formEditarFamilia.reset();
+            edicaoFamilia.close();
+            await renderizar();
+        });
+    }
+
+    if (excluirFamilia) {
+        excluirFamilia.addEventListener("click", async () => {
+            const id = Number(selectFamiliaEditar.value);
+            const familia = familias.find((item) => item.id === id);
+
+            if (!id || !familia) {
+                alert("Selecione uma família para excluir.");
+                return;
+            }
+
+            const confirmou = confirm(`Excluir a família ${familia.sobrenome}? Os membros vinculados a ela também serão excluídos.`);
+            if (!confirmou) {
+                return;
+            }
+
+            const { error } = await supabase
+                .from("familias")
+                .delete()
+                .eq("id", id);
+
+            if (error) {
+                alert(`Erro ao excluir família: ${error.message}`);
+                return;
+            }
+
+            formEditarFamilia.reset();
+            edicaoFamilia.close();
+            await renderizar();
+        });
     }
 
     if (formFamilia) {
@@ -189,6 +282,14 @@ async function iniciarMembros() {
     const cadastroMembro = $("#cadastroMembro");
     const buscaFamilia = $("#buscaFamilia");
     const exportarMembros = $("#exportarMembros");
+    const formEditarMembro = $("#formEditarMembro");
+    const edicaoMembro = $("#edicaoMembro");
+    const selectMembroEditar = $("#membroEditar");
+    const nomeEditar = $("#nomeEditar");
+    const selectFamiliaEditarMembro = $("#familiaEditarMembro");
+    const telefoneEditar = $("#telefoneEditar");
+    const nascimentoEditar = $("#nascimentoEditar");
+    const excluirMembro = $("#excluirMembro");
 
     if (!listaMembros && !formMembro) {
         return;
@@ -200,32 +301,126 @@ async function iniciarMembros() {
     }
 
     let membros = [];
+    let familias = [];
 
     abrirEFecharDialog("abrirCadastroMembro", "cadastroMembro", "fecharCadastroMembro");
+    abrirEFecharDialog("abrirEdicaoMembro", "edicaoMembro", "fecharEdicaoMembro");
 
-    async function carregarFamiliasNoSelect() {
-        const familias = await buscarFamilias();
-
-        if (!selectFamilia) {
+    function preencherSelectFamilias(select, textoInicial = "Selecione uma família") {
+        if (!select) {
             return;
         }
 
-        selectFamilia.innerHTML = '<option value="">Selecione uma família</option>';
+        select.innerHTML = `<option value="">${textoInicial}</option>`;
         familias.forEach((familia) => {
             const option = document.createElement("option");
             option.value = familia.id;
             option.textContent = familia.sobrenome;
-            selectFamilia.appendChild(option);
+            select.appendChild(option);
         });
+    }
+
+    function preencherSelectMembros() {
+        if (!selectMembroEditar) {
+            return;
+        }
+
+        selectMembroEditar.innerHTML = '<option value="">Selecione um membro</option>';
+        membros.forEach((membro) => {
+            const option = document.createElement("option");
+            option.value = membro.id;
+            option.textContent = membro.nome;
+            selectMembroEditar.appendChild(option);
+        });
+    }
+
+    async function carregarFamiliasNoSelect() {
+        familias = await buscarFamilias();
+        preencherSelectFamilias(selectFamilia);
+        preencherSelectFamilias(selectFamiliaEditarMembro);
     }
 
     function renderizar(lista = membros) {
         preencherLista(listaMembros, lista, (membro) => `${membro.nome} - ${membro.telefone}`);
+        preencherSelectMembros();
     }
 
     async function carregarMembros() {
         membros = await buscarMembros();
         renderizar();
+    }
+
+    if (selectMembroEditar) {
+        selectMembroEditar.addEventListener("change", () => {
+            const membro = membros.find((item) => item.id === Number(selectMembroEditar.value));
+
+            nomeEditar.value = membro?.nome || "";
+            telefoneEditar.value = membro?.telefone || "";
+            nascimentoEditar.value = membro?.nascimento || "";
+            selectFamiliaEditarMembro.value = membro?.familia_id || "";
+        });
+    }
+
+    if (formEditarMembro) {
+        formEditarMembro.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const id = Number(selectMembroEditar.value);
+            if (!id) {
+                alert("Selecione um membro para editar.");
+                return;
+            }
+
+            const { error } = await supabase
+                .from("membros")
+                .update({
+                    nome: nomeEditar.value.trim(),
+                    telefone: telefoneEditar.value.trim(),
+                    nascimento: nascimentoEditar.value,
+                    familia_id: Number(selectFamiliaEditarMembro.value),
+                })
+                .eq("id", id);
+
+            if (error) {
+                alert(`Erro ao editar membro: ${error.message}`);
+                return;
+            }
+
+            formEditarMembro.reset();
+            edicaoMembro.close();
+            await carregarMembros();
+        });
+    }
+
+    if (excluirMembro) {
+        excluirMembro.addEventListener("click", async () => {
+            const id = Number(selectMembroEditar.value);
+            const membro = membros.find((item) => item.id === id);
+
+            if (!id || !membro) {
+                alert("Selecione um membro para excluir.");
+                return;
+            }
+
+            const confirmou = confirm(`Excluir o membro ${membro.nome}?`);
+            if (!confirmou) {
+                return;
+            }
+
+            const { error } = await supabase
+                .from("membros")
+                .delete()
+                .eq("id", id);
+
+            if (error) {
+                alert(`Erro ao excluir membro: ${error.message}`);
+                return;
+            }
+
+            formEditarMembro.reset();
+            edicaoMembro.close();
+            await carregarMembros();
+        });
     }
 
     if (formMembro) {
